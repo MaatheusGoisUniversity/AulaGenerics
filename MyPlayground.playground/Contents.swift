@@ -18,6 +18,34 @@ pilha.push(intA)
 pilha.push(intB)
 
 //TODO: Fazer um método que recebe um Array e um elemento, retorna um Bool dizendo se o elemento se encontra no Array
+public func findElement<T: Equatable>(_ array: [T], _ element: T) -> Bool {
+    return array.firstIndex(of: element) != nil
+}
+
+print(findElement([1,2], 3))
+
+
 //TODO: Extensão de Array contendo uma função que retorna a soma de todos os elementos, independente de qual o valor numérico
+extension Array where Element: Numeric {
+    public func reduce() -> Element {
+        return reduce(Element.zero, {$0 + $1})
+    }
+}
+
+print([1,3,3].reduce())
+
+
 //TODO: Fazer um método que recebe 2 Arrays e retorna um Int referente a quantidade de elementos presentes em ambos os Arrays
-    //BONUS TODO: Fazer o método acima receber N arrays
+func sumArray<T: Equatable>(_ a: [T], _ b: [T]) -> Int {
+    return a.count + b.count
+}
+
+print(sumArray(["1"], ["4"]))
+
+
+//BONUS TODO: Fazer o método acima receber N arrays
+func sumArray<T: Equatable>(_ a: [[T]]) -> Int {
+    return a.reduce(Int.zero, {$0 + $1.count})
+}
+
+print(sumArray([[1000,20000,10000], [21231,334534,4567567], [2567,2666,266,277]]))
