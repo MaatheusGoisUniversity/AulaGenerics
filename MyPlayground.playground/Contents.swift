@@ -26,9 +26,9 @@ print(findElement([1,2], 3))
 
 
 //TODO: Extensão de Array contendo uma função que retorna a soma de todos os elementos, independente de qual o valor numérico
-extension Array where Element: Numeric {
+extension Array where Element: AdditiveArithmetic {
     public func reduce() -> Element {
-        return reduce(Element.zero, {$0 + $1})
+        return reduce(.zero, {$0 + $1})
     }
 }
 
@@ -44,8 +44,8 @@ print(sumArray(["1"], ["4"]))
 
 
 //BONUS TODO: Fazer o método acima receber N arrays
-func sumArray<T: Equatable>(_ a: [[T]]) -> Int {
+func sumArray<T: Equatable>(_ a: [T]...) -> Int {
     return a.reduce(Int.zero, {$0 + $1.count})
 }
 
-print(sumArray([[1000,20000,10000], [21231,334534,4567567], [2567,2666,266,277]]))
+print(sumArray([1000,20000,10000], [21231,334534,4567567], [21231,334534,4567567]))
