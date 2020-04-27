@@ -37,15 +37,19 @@ print([1,3,3].reduce())
 
 //TODO: Fazer um método que recebe 2 Arrays e retorna um Int referente a quantidade de elementos presentes em ambos os Arrays
 func sumArray<T: Equatable>(_ a: [T], _ b: [T]) -> Int {
-    return a.count + b.count
+    return a.filter({ b.contains($0) }).count
 }
 
-print(sumArray(["1"], ["4"]))
+print(sumArray(["1"], ["1"]))
 
 
 //BONUS TODO: Fazer o método acima receber N arrays
-func sumArray<T: Equatable>(_ a: [T]...) -> Int {
-    return a.reduce(Int.zero, {$0 + $1.count})
+func filterArray<T: Equatable>(_ a: [T], _ b: [T]) -> [T] {
+    return a.filter({ b.contains($0) })
 }
 
-print(sumArray([1000,20000,10000], [21231,334534,4567567], [21231,334534,4567567]))
+func sumArray<T: Equatable>(_ a: [T]...) -> Int {
+    return a.reduce(a[0], filterArray(_:_:)).count
+}
+
+print(sumArray([1,3,2], [1,3,4], [1,5,6]))
